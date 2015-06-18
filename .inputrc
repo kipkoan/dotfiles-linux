@@ -1,0 +1,41 @@
+# Edit commands in Vi mode
+set editing-mode vi
+
+# Completed names which are symbolic links to
+# directories have a slash appended.
+set mark-symlinked-directories on
+
+#set keymap vi
+#set keymap vi-insert
+
+# Re-read init file:
+"\C-x\C-r": re-read-init-file
+
+# Clear screen
+"\C-l": clear-screen
+
+# Use "Magic Space" (space after history substitution expands history)
+$if Bash
+  Space: magic-space
+$endif
+
+# Edit options before rerunning previous command, eg: ls a b c -> ls -al a b c
+"\C-o": "\e-0eli "
+
+# Cycle thru completions.
+"\C-a": menu-complete
+
+# ignore case on tab-completion
+set completion-ignore-case on
+
+# glob patterns without executing, eg: 'rm *x'
+"\C-e": glob-expand-word
+
+# expand line without executing, eg: 'rm *'
+"\C-f": shell-expand-line
+
+# ^p check for partial match in history
+"\C-p": dynamic-complete-history
+
+# ^n cycle through the list of partial matches
+"\C-n": menu-complete

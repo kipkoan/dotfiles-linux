@@ -1,0 +1,101 @@
+[user]
+  name = Kip McEntire
+  email = kipm@zillow.com
+
+[core]
+  excludesfile = ~/.config/git/ignore
+  legacyheaders = false
+  pager = less -FMRiX
+
+[repack]
+  usedeltabaseoffset = true
+
+[push]
+  default = simple
+
+[merge]
+  tool = vimdiff
+
+[diff]
+  tool = vimdiff
+
+[difftool]
+  prompt = false
+
+[pager]
+  status = true
+  show-branch = true
+
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  ui = auto
+  interactive = auto
+
+[alias]
+  a = add
+  aa = add --all
+  ai = add -i
+  amend = commit --amend
+  alias = config --get-regexp '^alias\\.'
+  ap = add -p
+  b = branch
+  ba = branch -a
+  c = commit
+  ca = commit -a
+  cam = commit -am
+  cm = commit -m
+  co = checkout
+  cof = checkout --
+  com = "!f() { git merge --no-ff --no-commit $@ && git reset head -q; }; f"  # checkout-merge
+  cp = cherry-pick
+  d = diff
+  dt = difftool
+  div = divergence
+  dc = diff --cached
+  fa = fetch --all
+  ff = merge --ff-only
+  h = !git hd
+  hd = !git l -1
+
+  ls-ignored = !git ls-files -v | grep '^[a-z]'
+  ls-igskipped = !git ls-files -v | grep '^[a-zS]'
+  ls-skipped = !git ls-files -v | grep '^S'
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
+  skip = update-index --skip-worktree
+  unskip = update-index --no-skip-worktree
+
+  in = log origin ^HEAD
+  l = log --graph --abbrev-commit --date=relative
+  la = log --graph --abbrev-commit --date=relative --all
+  lg = log --pretty=medium
+  lp = log -p -1
+  ls = ls-files
+  out = log HEAD ^origin
+  pl = pull
+  plff = pull --ff-only
+  pom = push origin master
+  ps = push
+  plre = pull --rebase
+  r = !git --no-pager l -20
+  ra = !git r --all
+  rh = reset HEAD
+  st = status
+  wc = whatchanged -p --abbrev-commit --pretty=medium --
+  dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
+[format]
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+
+[branch]
+  autosetuprebase = always
+
+#[branch.master]
+# remote = origin
+# merge = refs/heads/master
+
+#[branch.develop]
+#  remote = origin
+#  merge = refs/heads/develop

@@ -1,0 +1,68 @@
+#==============================================================================
+#=  Aliases                                                                   =
+#==============================================================================
+
+#=  development  ==============================================================
+alias b='bundle'
+alias be='bundle exec'
+alias gadd="git add -u && git add . && git status"
+
+#=  bash  =====================================================================
+alias ..='cd ..'
+alias cd..='cd ..'
+alias c='clear'
+alias diff='colordiff'
+alias e='exit'
+alias grep='grep ${GREP_OPTIONS}'
+alias h='history'
+alias ht='HISTTIMEFORMAT="%F %T  " history'
+alias ls='/bin/ls -hF ${LS_OPTIONS}'
+alias ls.='ls -d .*'
+alias l='ls -l'
+alias l.='ls -ld .*'
+alias la='ls -al'
+alias ll='ls -Al'
+#alias root="sudo bash -l"
+#alias sudo='sudo -Es'
+alias v='vim'
+alias k='kinit -fl7d'
+alias htop='TERM=xterm-color htop'
+alias pip='pip-python'
+
+
+
+#==============================================================================
+#=  Functions                                                                 =
+#==============================================================================
+
+#=  Back-Up file  =============================================================
+#bu () { cp -a "$1" "$1"~$(date +%F.%T)~; }
+bu () {
+  pattern='^.*[^/]'  # get everything except for trailing forward-slashes
+  [[ $1 =~ $pattern ]]  # match regex
+  file=${BASH_REMATCH[0]}  # assign matched pattern to "$file"
+  cp -a "$file" "$file"~$(date +%F.%T)~
+}
+
+#=  Random Sort  ==============================================================
+rsort () {
+  if sort -R /dev/null 2> /dev/null; then
+    sort -R
+  else
+    while IFS= read -r f; do printf "%05d %s\n" "$RANDOM" "$f"; done | sort -n | cut -c7-
+  fi
+}
+
+tm ()
+{
+  if [[ $# -eq 0 ]]; then
+    tmux ls;
+  else
+    tmux has -t $1 2> /dev/null;
+    if [[ $? -eq 0 ]]; then
+      tmux attach -t $1;
+    else
+      tmux new-session -s $1;
+    fi;
+  fi
+}

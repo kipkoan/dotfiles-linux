@@ -1,0 +1,156 @@
+# Define colors
+RESET='\[\033[00m\]'
+FGBK='\[\033[0;30m\]' # foreground black
+FGRD='\[\033[0;31m\]' # foreground red
+FGGN='\[\033[0;32m\]' # foreground green
+FGYL='\[\033[0;33m\]' # foreground yellow
+FGBL='\[\033[0;34m\]' # foreground blue
+FGMG='\[\033[0;35m\]' # foreground magenta
+FGCY='\[\033[0;36m\]' # foreground cyan
+FGWT='\[\033[0;37m\]' # foreground white
+FGBKBT='\[\033[1;30m\]' # foreground black bright
+FGRDBT='\[\033[1;31m\]' # foreground red bright
+FGGNBT='\[\033[1;32m\]' # foreground green bright
+FGYLBT='\[\033[1;33m\]' # foreground yellow bright
+FGBLBT='\[\033[1;34m\]' # foreground blue bright
+FGMGBT='\[\033[1;35m\]' # foreground magenta bright
+FGCYBT='\[\033[1;36m\]' # foreground cyan bright
+FGWTBT='\[\033[1;37m\]' # foreground white bright
+BGBK='\[\033[40m\]' # background black
+BGRD='\[\033[41m\]' # background red
+BGGN='\[\033[42m\]' # background green
+BGYL='\[\033[43m\]' # background yellow
+BGBL='\[\033[44m\]' # background blue
+BGMG='\[\033[45m\]' # background magenta
+BGCY='\[\033[46m\]' # background cyan
+BGWT='\[\033[47m\]' # background white
+
+# Give the hostname an emphasized color
+HOSTCOLOR="$FGRD"
+
+
+# set the prompt symbol character differently for root
+function set_prompt_character () {
+  if [[ ${EUID} == 0 ]]; then
+    PROMPT_CHARACTER='#'
+  else
+    PROMPT_CHARACTER='$'
+  fi
+}
+
+
+# Return the prompt symbol to use, colorized based on the return value of the
+# previous command.
+function set_prompt_symbol () {
+  if [[ ${1} -eq 0 ]]; then
+    PROMPT_SYMBOL="${PROMPT_CHARACTER}"
+  else
+    PROMPT_SYMBOL="${FGRD}${PROMPT_CHARACTER}${RESET}"
+  fi
+}
+
+
+# Change the color of the username if root
+function prompt_set_user_color () {
+  if [[ ${EUID} == 0 ]]; then
+    USER_COLOR="${FGWT}${BGRD}"
+  else
+    USER_COLOR="${FGBL}"
+  fi
+}
+
+
+# Detect whether the current directory is a git repository.
+function is_git_repository {
+  git branch > /dev/null 2>&1
+}
+
+
+# Determine the branch/state information for this git repository.
+function set_git_branch {
+  # Capture the output of the "git status" command.
+  git_status="$(git status 2> /dev/null)"
+
+  # Set color based on clean/staged/dirty.
+  if [[ ${git_status} =~ "working directory clean" ]]; then    # clean
+    state=$FGGN
+  elif [[ ${git_status} =~ "Changes to be committed" ]]; then  # staged
+    state=$FGYL
+  elif [[ ${git_status} =~ "Changes not staged" ]]; then       # unstaged
+    state=$FGYL
+  elif [[ ${git_status} =~ "Untracked files" ]]; then          # untracked
+    state=$FGYL
+  else    # unknown
+    state=$FGRD
+  fi
+
+  # Set arrow icon based on status against remote.
+  remote=""
+  remote_pattern="Your branch is ([[:graph:]]+)"
+  diverge_pattern="Your branch and (.*) have diverged"
+  if [[ ${git_status} =~ ${remote_pattern} ]]; then
+    if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
+      remote="↑"
+    elif [[ ${BASH_REMATCH[1]} == "behind" ]]; then
+      remote="↓"
+    fi
+  elif [[ ${git_status} =~ ${diverge_pattern} ]]; then
+    remote="↕"
+  fi
+
+  # Get the name of the branch.
+  branch_pattern="On branch ([^${IFS}]*)"
+  detached_pattern="HEAD detached at ([^${IFS}]*)"
+  if [[ ${git_status} =~ ${branch_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+  elif [[ ${git_status} =~ ${detached_pattern} ]]; then
+    branch=${BASH_REMATCH[1]}
+  else
+    branch="<???>"
+  fi
+
+  # Set the final branch string.
+  BRANCH="${state}[${branch}]${remote}$RESET"
+}
+
+
+# Set the full bash prompt.
+function set_bash_prompt () {
+  # Set the BRANCH variable.
+  if is_git_repository ; then
+    set_git_branch
+  else
+    BRANCH=''
+  fi
+
+  # Set USER_COLOR
+  prompt_set_user_color
+
+  # Fill spaces between the left and right halves
+  strippedbranch=`echo $BRANCH | sed 's|\\\\\\[[^]]*\\]||g'`
+  lefthalf="`whoami`@`hostname` `pwd | sed "s|$HOME|~|"` $strippedbranch"
+  righthalf=`date '+%a %b %d %T'`
+  let fillsize=$(tput cols)-${#lefthalf}-${#righthalf}
+  if [[ $fillsize > 1 ]]; then
+    fill=`printf ' %.0s' {1..300}` # 300 spaces
+    fill=${fill:0:$fillsize}
+  else
+    fill=' '
+  fi
+
+  # Set the bash prompt variable.
+  PS1="\n${USER_COLOR}\u${FGCY}@${HOSTCOLOR}\H${RESET} ${FGWT}\w${RESET} ${BRANCH}${fill}${FGBL}\d \T${RESET}\n\
+${PROMPT_SYMBOL} "
+}
+
+# Set PROMPT_CHARACTER
+set_prompt_character
+
+# Set PROMPT_SYMBOL -- caller must pass ${?} to properly set result code
+set_prompt_symbol "${1}"
+
+# Set PS1
+set_bash_prompt
+
+# Output PS1
+echo "${PS1}"
