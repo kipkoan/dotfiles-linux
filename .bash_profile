@@ -61,7 +61,7 @@ shopt -s histverify
 
 #=  customize what goes into history  =========================================
 HISTCONTROL=ignoredups:ignorespace && export HISTCONTROL
-HISTIGNORE="ls:ll:la:ls.:l.:man:[bf]g:history:history *:h:h *:clear:c:exit:e && export HISTIGNORE
+HISTIGNORE="ls:ll:la:ls.:l.:man:[bf]g:history:history *:h:h *:clear:c:exit:e" && export HISTIGNORE
 
 #=  z ("cd" jump history)  ====================================================
 #. $HOME/bin/z.src/z.sh
