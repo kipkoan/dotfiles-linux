@@ -1,3 +1,3 @@
-if [[ -f ~/.bash_prompt_command ]] && [[ ! ${PROMPT_COMMAND} =~ 'PS1="\$\(~/\.bash_prompt_command \$\{\?\}\)"' ]]; then
-  PROMPT_COMMAND="PS1=\"\$(~/.bash_prompt_command \${?})\"; ${PROMPT_COMMAND}" && export PROMPT_COMMAND
+if [[ -f ~/.bash_prompt_command ]] && [[ ! ${PROMPT_COMMAND} =~ 'PS1="$(~/.bash_prompt_command ${?})"' ]]; then
+  PROMPT_COMMAND='PS1="$(~/.bash_prompt_command ${?})"; '"${PROMPT_COMMAND}" && export PROMPT_COMMAND
 fi
