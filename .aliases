@@ -44,6 +44,13 @@ bu () {
   cp -a "$file" "$file"~$(date +%F.%T)~
 }
 
+#=  File Creation/Birth Time  =================================================
+dstat () {
+  file=$(readlink -f ${1})
+  filesystem=$(df ${file} | awk 'NR == 2 {print $1}')
+  sudo debugfs -R "stat ${file}" ${filesystem} | cat
+}
+
 #=  Random Sort  ==============================================================
 rsort () {
   if sort -R /dev/null 2> /dev/null; then
