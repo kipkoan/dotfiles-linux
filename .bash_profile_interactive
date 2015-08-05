@@ -1,0 +1,2 @@
+#=  disable output flow control ===============================================
+stty -ixon -ixoff

@@ -1,9 +1,12 @@
+#=  include interactive settings  =============================================
+if [[ $- =~ i ]] && [[ -f ~/.bash_profile_interactive ]]; then
+  source ~/.bash_profile_interactive
+fi
+
+
 #=  vi-style command-line editing  ============================================
 set -o vi
 
-
-#=  disable output flow control ===============================================
-stty -ixon -ixoff
 
 #=  Environment Variables  ====================================================
 LC_ALL="en_US.utf-8" && export LC_ALL
