@@ -67,16 +67,17 @@
   skip = update-index --skip-worktree
   unskip = update-index --no-skip-worktree
 
-  in = log origin ^HEAD
+  in = !git log $(git rev-parse --abbrev-ref --symbolic-full-name @{u}) ^HEAD
   l = log --graph --abbrev-commit --date=relative
-  la = log --graph --abbrev-commit --date=relative --all
+  la = !git l --all
   lg = log --pretty=medium
+  lm = !git l --author=$(git config user.email)
   lp = log -p -1
   ls = ls-files
-  out = log HEAD ^origin
+  out = !git log HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
   pl = pull
   plff = pull --ff-only
-  pom = push origin master
+  pom = !git push $(git remote) $(git rev-parse --abbrev-ref HEAD)
   ps = push
   plre = pull --rebase
   r = !git --no-pager l -20
