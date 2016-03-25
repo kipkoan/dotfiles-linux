@@ -49,6 +49,14 @@ fi
 HISTSIZE=1000000 && export HISTSIZE
 HISTFILESIZE=1000000 && export HISTFILESIZE
 HISTTIMEFORMAT='%F %T  ' && export HISTTIMEFORMAT
+if [[ ! -d ${HOME}/.history ]]; then
+  if [[ -e ${HOME}/.history ]]; then
+    mv ${HOME}/.history ${HOME}/.history.bak
+  fi
+  mkdir ${HOME}/.history
+  chmod 777 ${HOME}/.history
+fi
+HISTFILE="${HOME}/.history/$(whoami)" && export HISTFILE
 
 #=  unify bash history across session exits, and update in realtime  ==========
 shopt -s histappend
