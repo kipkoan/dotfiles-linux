@@ -104,3 +104,9 @@ fi
 if [[ -z $TMUX ]]; then
   tm $(date +%Y%m%d%H%M%S)
 fi
+
+
+#=  output w & nproc  =========================================================
+if [[ $- == *i* ]]; then
+  w
+fi
