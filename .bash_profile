@@ -27,6 +27,15 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 #=  Python  ===================================================================
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
 
+#=  pyenv  ====================================================================
+if [[ -f $HOME/.pyenv/bin/pyenv ]]; then
+  PATH=$HOME/.pyenv/bin:$PATH && export PATH
+  eval "$(pyenv init -)";
+fi
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
+fi
+
 
 #=  Set HOMEBREW_PREFIX =======================================================
 # brew_prefix=`brew --prefix` && export brew_prefix
