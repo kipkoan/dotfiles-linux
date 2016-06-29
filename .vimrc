@@ -22,3 +22,6 @@ iunmap jk
 iunmap JK
 iunmap jK
 iunmap Jk
+
+" Add Bindings
+nnoremap <leader>b :CtrlPBuffer<CR>
