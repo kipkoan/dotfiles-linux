@@ -16,13 +16,13 @@ fi
 
 # (re)link shared socket if it's not already correct
 if ! ( readlink -f ~/.ssh/ssh_auth_sock | grep -q "$SSH_AUTH_SOCK" ); then
-    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+  ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 
 # use shared socket
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 
 # add keys if not already added
-if ! ( /usr/bin/ssh-add -l | grep -q "${HOME}/.ssh/id_rsa" ); then
+if ! ( /usr/bin/ssh-add -l >/dev/null 2>&1 ); then
   /usr/bin/ssh-add ${HOME}/.ssh/id_rsa
 fi
