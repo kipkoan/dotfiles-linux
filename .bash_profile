@@ -12,6 +12,10 @@ set -o vi
 LC_ALL="en_US.utf-8" && export LC_ALL
 
 
+#=  SSH_AUTH_SOCK fix  ========================================================
+source $HOME/bin/start-ssh-agent
+
+
 #=  MySQl  ====================================================================
 #PATH=$PATH:/usr/local/mysql/bin && export PATH
 #DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH && export DYLD_LIBRARY_PATH

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# get ssh-agent PID & AUTH_SOCK
+if [[ -r ~/.ssh/ssh-agent-info ]]; then
+  source ~/.ssh/ssh-agent-info
+fi
+
+# start agent if not already running
+if ! ( ps -p ${SSH_AGENT_PID} -o args= 2>/dev/null | grep -q '/usr/bin/ssh-agent' ); then
+  pkill -f '/ssh-agent$'
+  rm -f ~/.ssh/ssh-agent-info
+  /usr/bin/ssh-agent > ~/.ssh/ssh-agent-info
+  sed -i 's/^echo/#echo/' ~/.ssh/ssh-agent-info
+  source ~/.ssh/ssh-agent-info
+fi
+
+# (re)link shared socket if it's not already correct
+if ! ( readlink -f ~/.ssh/ssh_auth_sock | grep -q "$SSH_AUTH_SOCK" ); then
+    ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+
+# use shared socket
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+
+# add keys if not already added
+if ! ( /usr/bin/ssh-add -l | grep -q "${HOME}/.ssh/id_rsa" ); then
+  /usr/bin/ssh-add ${HOME}/.ssh/id_rsa
+fi
