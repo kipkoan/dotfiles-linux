@@ -23,12 +23,16 @@ alias l.='ls -ld .*'
 alias la='ls -al'
 alias ll='ls -Al'
 #alias root="sudo bash -l"
+alias ssh='ssh -o "RemoteForward 8377 localhost:8377"'
 #alias sudo='sudo -Es'
 alias v='vim'
 alias k='kinit -fl7d'
 alias htop='TERM=xterm-color htop'
 alias pip='pip-python'
 alias w='COLUMNS=$(tput cols) w | sed "1s/\(.*\)/\n\1 (np:$(nproc))/"'
+
+# Pipe anything into `clip` to forward it to Clipper
+alias clip="nc -q0 localhost 8377"
 
 
 

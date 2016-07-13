@@ -25,3 +25,6 @@ iunmap Jk
 
 " Add Bindings
 nnoremap <leader>b :CtrlPBuffer<CR>
+
+" Bind <leader>y to forward last-yanked text to Clipper
+nnoremap <leader>y :call system('nc -q0 localhost 8377', @0)<CR>
