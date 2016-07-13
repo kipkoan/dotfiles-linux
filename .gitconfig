@@ -77,7 +77,7 @@
   out = !git log HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
   pl = pull
   plff = pull --ff-only
-  pom = !git push $(git remote) $(git rev-parse --abbrev-ref HEAD)
+  pom = !git push -u $(git remote) $(git rev-parse --abbrev-ref HEAD)
   ps = push
   plre = pull --rebase
   r = !git --no-pager l -20
