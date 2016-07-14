@@ -15,6 +15,9 @@ LC_ALL="en_US.utf-8" && export LC_ALL
 #=  SSH_AUTH_SOCK fix  ========================================================
 source $HOME/bin/start-ssh-agent
 
+#=  SSH Options  ==============================================================
+SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
+
 
 #=  MySQl  ====================================================================
 #PATH=$PATH:/usr/local/mysql/bin && export PATH
