@@ -23,6 +23,9 @@
 [difftool]
   prompt = false
 
+[rerere]
+  enabled = 1
+
 [pager]
   status = true
   show-branch = true
