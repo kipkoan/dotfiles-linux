@@ -28,6 +28,32 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
 
 
+#=  Set HOMEBREW_PREFIX =======================================================
+# brew_prefix=`brew --prefix` && export brew_prefix
+
+#=  Homebrew/bin  =============================================================
+PATH="$HOME/.linuxbrew/bin:$PATH" && export PATH
+MANPATH="$HOME/.linuxbrew/share/man:$MANPATH" && export MANPATH
+INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH" && export INFOPATH
+
+#=  Homebrew/sbin  ============================================================
+# PATH=/usr/local/sbin:$PATH && export PATH
+
+#=  Homebrew/bash-completion  =================================================
+# if [ -f $brew_prefix/etc/bash_completion ]; then
+#   . $brew_prefix/etc/bash_completion
+# fi
+
+#=  Homebrew/github_api_token =================================================
+# if [ -f ~/.homebrew_github_api_token ]; then
+#   . ~/.homebrew_github_api_token
+# fi
+
+#= Homebrew/coreutils  ========================================================
+#PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+#MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
+
 #=  Editors  ==================================================================
 EDITOR="vim" && export EDITOR
 VISUAL="vim" && export VISUAL
