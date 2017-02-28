@@ -25,6 +25,8 @@ alias ll='ls -Al'
 #alias root="sudo bash -l"
 alias ssh='ssh-sync'
 #alias sudo='sudo -Es'
+#alias vim='nvim'
+alias vi='vim'
 alias v='vim'
 alias k='kinit -fl7d'
 alias htop='TERM=xterm-color htop'
