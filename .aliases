@@ -28,7 +28,6 @@ alias ssh='ssh-sync'
 alias v='vim'
 alias k='kinit -fl7d'
 alias htop='TERM=xterm-color htop'
-alias pip='pip-python'
 alias w='COLUMNS=$(tput cols) w | sed "1s/\(.*\)/\n\1 (np:$(nproc))/"'
 
 # Pipe anything into `clip` to forward it to Clipper
