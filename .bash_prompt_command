@@ -134,7 +134,7 @@ function set_bash_prompt () {
   lefthalf="`whoami`@`hostname -s` `pwd | sed "s|$HOME|~|"` $strippedbranch"
   righthalf=`date "+${DATEFORMAT}"`
   let fillsize=$(tput cols)-${#lefthalf}-${#righthalf}
-  if [[ $fillsize > 1 ]]; then
+  if [[ $fillsize -gt 1 ]]; then
     fill=`printf ' %.0s' {1..300}` # 300 spaces
     fill=${fill:0:$fillsize}
   else
