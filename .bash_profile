@@ -26,6 +26,7 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 
 #=  Python  ===================================================================
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
+PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
 
 #=  pyenv  ====================================================================
 if [[ -f $HOME/.pyenv/bin/pyenv ]]; then
