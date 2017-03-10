@@ -28,6 +28,9 @@ BGWT='\[\033[47m\]' # background white
 # Give the hostname an emphasized color
 HOSTCOLOR="$FGRD"
 
+# Date Format
+DATEFORMAT='%a %b %d %T'
+
 
 # set the prompt symbol character differently for root
 function set_prompt_character () {
@@ -72,7 +75,7 @@ function set_git_branch {
   git_status="$(git status 2> /dev/null)"
 
   # Set color based on clean/staged/dirty.
-  if [[ ${git_status} =~ "working directory clean" ]]; then    # clean
+  if [[ ${git_status} =~ "working tree clean" ]]; then    # clean
     state=$FGGN
   elif [[ ${git_status} =~ "Changes to be committed" ]]; then  # staged
     state=$FGYL
@@ -129,7 +132,7 @@ function set_bash_prompt () {
   # Fill spaces between the left and right halves
   strippedbranch=`echo $BRANCH | sed 's|\\\\\\[[^]]*\\]||g'`
   lefthalf="`whoami`@`hostname -s` `pwd | sed "s|$HOME|~|"` $strippedbranch"
-  righthalf=`date '+%a %b %d %T'`
+  righthalf=`date "+${DATEFORMAT}"`
   let fillsize=$(tput cols)-${#lefthalf}-${#righthalf}
   if [[ $fillsize > 1 ]]; then
     fill=`printf ' %.0s' {1..300}` # 300 spaces
@@ -139,7 +142,7 @@ function set_bash_prompt () {
   fi
 
   # Set the bash prompt variable.
-  PS1="\n${USER_COLOR}\u${FGCY}@${HOSTCOLOR}\h${RESET} ${FGWT}\w${RESET} ${BRANCH}${fill}${FGBL}\d \T${RESET}\n\
+  PS1="\n${USER_COLOR}\u${FGCY}@${HOSTCOLOR}\h${RESET} ${FGWT}\w${RESET} ${BRANCH}${fill}${FGBL}\D{${DATEFORMAT}}${RESET}\n\
 ${PROMPT_SYMBOL} "
 }
 
