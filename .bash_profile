@@ -39,25 +39,25 @@ fi
 
 
 #=  Set HOMEBREW_PREFIX =======================================================
-# brew_prefix=`brew --prefix` && export brew_prefix
+brew_prefix="${HOME}/.linuxbrew" && export brew_prefix
 
 #=  Homebrew/bin  =============================================================
-PATH="$HOME/.linuxbrew/bin:$PATH" && export PATH
-MANPATH="$HOME/.linuxbrew/share/man:$MANPATH" && export MANPATH
-INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH" && export INFOPATH
+PATH="${brew_prefix}/bin:$PATH" && export PATH
+MANPATH="${brew_prefix}/share/man:$MANPATH" && export MANPATH
+INFOPATH="${brew_prefix}/share/info:$INFOPATH" && export INFOPATH
 
 #=  Homebrew/sbin  ============================================================
 # PATH=/usr/local/sbin:$PATH && export PATH
 
 #=  Homebrew/bash-completion  =================================================
-# if [ -f $brew_prefix/etc/bash_completion ]; then
-#   . $brew_prefix/etc/bash_completion
-# fi
+if [ -f ${brew_prefix}/etc/bash_completion ]; then
+  . ${brew_prefix}/etc/bash_completion
+fi
 
 #=  Homebrew/github_api_token =================================================
-# if [ -f ~/.homebrew_github_api_token ]; then
-#   . ~/.homebrew_github_api_token
-# fi
+if [ -f ~/.homebrew_github_api_token ]; then
+  . ~/.homebrew_github_api_token
+fi
 
 #= Homebrew/coreutils  ========================================================
 #PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
