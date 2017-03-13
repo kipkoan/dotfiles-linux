@@ -64,6 +64,10 @@ if which pyenv-virtualenv-init > /dev/null; then
 fi
 
 
+#=  AWS Bash Completion  ======================================================
+complete -C "${HOME}/.pyenv/shims/aws_completer" aws
+
+
 #=  Editors  ==================================================================
 EDITOR="vim" && export EDITOR
 VISUAL="vim" && export VISUAL
