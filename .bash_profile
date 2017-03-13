@@ -24,20 +24,6 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 #DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH && export DYLD_LIBRARY_PATH
 
 
-#=  Python  ===================================================================
-PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
-PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
-
-#=  pyenv  ====================================================================
-if [[ -f $HOME/.pyenv/bin/pyenv ]]; then
-  PATH=$HOME/.pyenv/bin:$PATH && export PATH
-  eval "$(pyenv init -)";
-fi
-if which pyenv-virtualenv-init > /dev/null; then
-  eval "$(pyenv virtualenv-init -)";
-fi
-
-
 #=  Set HOMEBREW_PREFIX =======================================================
 brew_prefix="${HOME}/.linuxbrew" && export brew_prefix
 
@@ -62,6 +48,20 @@ fi
 #= Homebrew/coreutils  ========================================================
 #PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 #MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
+
+
+#=  Python  ===================================================================
+PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
+PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
+
+#=  pyenv  ====================================================================
+if [[ -f $HOME/.pyenv/bin/pyenv ]]; then
+  PATH=$HOME/.pyenv/bin:$PATH && export PATH
+  eval "$(pyenv init -)";
+fi
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)";
+fi
 
 
 #=  Editors  ==================================================================
