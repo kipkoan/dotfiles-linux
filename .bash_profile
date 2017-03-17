@@ -55,7 +55,7 @@ PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPA
 PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
 
 #=  pyenv  ====================================================================
-if [[ -f $HOME/.pyenv/bin/pyenv ]]; then
+if which pyenv > /dev/null; then
   PATH=$HOME/.pyenv/bin:$PATH && export PATH
   eval "$(pyenv init -)";
 fi

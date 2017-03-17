@@ -1,2 +1,10 @@
 bash-completion
+cmake
+entr
+gcc
 git
+pyenv
+pyenv-virtualenv
+the_silver_searcher
+tmux
+vim
