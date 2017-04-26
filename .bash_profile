@@ -53,6 +53,7 @@ fi
 #=  Python  ===================================================================
 PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
 PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
+PYTHONSTARTUP=${HOME}/.pystartup && export PYTHONSTARTUP
 
 #=  pyenv  ====================================================================
 if which pyenv > /dev/null; then
