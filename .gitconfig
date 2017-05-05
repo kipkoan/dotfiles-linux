@@ -17,6 +17,12 @@
   tool = vimdiff
   conflictstyle = diff3
 
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+
 [diff]
   tool = vimdiff
 
@@ -36,6 +42,9 @@
   branch = auto
   ui = auto
   interactive = auto
+
+[format]
+  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
 
 [alias]
   a = add
@@ -90,9 +99,3 @@
   st = status
   wc = whatchanged -p --abbrev-commit --pretty=medium --
   dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-
-[format]
-  pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
-
-[pull]
-  rebase = true
