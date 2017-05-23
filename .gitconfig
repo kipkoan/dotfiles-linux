@@ -90,6 +90,7 @@
   out = !git log HEAD ^$(git rev-parse --abbrev-ref --symbolic-full-name @{u})
   pl = pull
   plff = pull --ff-only
+  pod = !git push --delete $(git remote)
   pom = !git push -u $(git remote) $(git rev-parse --abbrev-ref HEAD)
   ps = push
   plre = pull --rebase
