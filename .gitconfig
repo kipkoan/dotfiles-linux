@@ -96,6 +96,7 @@
   plre = pull --rebase
   r = !git --no-pager l -20
   ra = !git r --all
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
   rh = reset HEAD
   st = status
   wc = whatchanged -p --abbrev-commit --pretty=medium --
