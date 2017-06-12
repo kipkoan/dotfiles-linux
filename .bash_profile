@@ -36,12 +36,12 @@ INFOPATH="${brew_prefix}/share/info:$INFOPATH" && export INFOPATH
 # PATH=/usr/local/sbin:$PATH && export PATH
 
 #=  Homebrew/bash-completion  =================================================
-if [ -f ${brew_prefix}/etc/bash_completion ]; then
+if [[ -f ${brew_prefix}/etc/bash_completion ]]; then
   . ${brew_prefix}/etc/bash_completion
 fi
 
 #=  Homebrew/github_api_token =================================================
-if [ -f ~/.homebrew_github_api_token ]; then
+if [[ -f ~/.homebrew_github_api_token ]]; then
   . ~/.homebrew_github_api_token
 fi
 
@@ -85,7 +85,7 @@ IN="\[\033[0m\]"
 
 PS1="$NM[$HI\u@$HII\h $SI\w$NM]\\\$$IN " && export PS1
 
-if [ "$TERM" != "dumb" ]; then
+if [[ "$TERM" != "dumb" ]]; then
   LS_OPTIONS='--color=auto' && export LS_OPTIONS
   GREP_OPTIONS='--color=auto' && export GREP_COLORS
   CLICOLOR=1 && export CLICOLOR
@@ -127,7 +127,7 @@ HISTIGNORE="ls:ll:la:ls.:l.:man:[bf]g:history:history *:h:h *:clear:c:exit:e" &&
 
 
 #=  Aliases  ==================================================================
-if [ -f ~/.aliases ]; then
+if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 
@@ -137,7 +137,7 @@ PATH=$HOME/bin:$PATH && export PATH
 
 
 #=  Prompt  ===================================================================
-if [ -f ~/.bash_prompt ]; then
+if [[ -f ~/.bash_prompt ]]; then
   source ~/.bash_prompt
 fi
 
