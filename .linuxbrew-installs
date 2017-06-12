@@ -4,6 +4,7 @@ colordiff
 entr
 gcc
 git
+jenv
 pyenv
 pyenv-virtualenv
 the_silver_searcher
