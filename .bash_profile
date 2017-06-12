@@ -13,7 +13,7 @@ LC_ALL="en_US.utf-8" && export LC_ALL
 
 
 #=  SSH_AUTH_SOCK fix  ========================================================
-source $HOME/bin/start-ssh-agent
+source ${HOME}/bin/start-ssh-agent
 
 #=  SSH Options  ==============================================================
 SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
@@ -28,9 +28,9 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 brew_prefix="${HOME}/.linuxbrew" && export brew_prefix
 
 #=  Homebrew/bin  =============================================================
-PATH="${brew_prefix}/bin:$PATH" && export PATH
-MANPATH="${brew_prefix}/share/man:$MANPATH" && export MANPATH
-INFOPATH="${brew_prefix}/share/info:$INFOPATH" && export INFOPATH
+PATH="${brew_prefix}/bin:${PATH}" && export PATH
+MANPATH="${brew_prefix}/share/man:${MANPATH}" && export MANPATH
+INFOPATH="${brew_prefix}/share/info:${INFOPATH}" && export INFOPATH
 
 #=  Homebrew/sbin  ============================================================
 # PATH=/usr/local/sbin:$PATH && export PATH
@@ -51,13 +51,13 @@ fi
 
 
 #=  Python  ===================================================================
-PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH && export PYTHONPATH
-PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_CONFIGURE_OPTS
+PYTHONPATH=/usr/local/lib/python2.7/site-packages:${PYTHONPATH} && export PYTHONPATH
+PYTHON_CONFIGURE_OPTS="${PYTHON_CONFIGURE_OPTS} --enable-shared" && export PYTHON_CONFIGURE_OPTS
 PYTHONSTARTUP=${HOME}/.pystartup && export PYTHONSTARTUP
 
 #=  pyenv  ====================================================================
 if hash pyenv 2>/dev/null; then
-  PATH=$HOME/.pyenv/bin:$PATH && export PATH
+  PATH=${HOME}/.pyenv/bin:${PATH} && export PATH
   eval "$(pyenv init -)";
 fi
 if hash pyenv-virtualenv-init 2>/dev/null; then
@@ -85,7 +85,7 @@ IN="\[\033[0m\]"
 
 PS1="$NM[$HI\u@$HII\h $SI\w$NM]\\\$$IN " && export PS1
 
-if [[ "$TERM" != "dumb" ]]; then
+if [[ "${TERM}" != "dumb" ]]; then
   LS_OPTIONS='--color=auto' && export LS_OPTIONS
   GREP_OPTIONS='--color=auto' && export GREP_COLORS
   CLICOLOR=1 && export CLICOLOR
@@ -109,7 +109,7 @@ HISTFILE="${HOME}/.history/$(whoami)" && export HISTFILE
 #=  unify bash history across session exits, and update in realtime  ==========
 shopt -s histappend
 if [[ ! ${PROMPT_COMMAND} =~ 'history -a; history -n;' ]]; then
-  PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND" && export PROMPT_COMMAND
+  PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}" && export PROMPT_COMMAND
 fi
 
 #=  store multi-line commands in history  =====================================
@@ -123,7 +123,9 @@ HISTCONTROL=ignoredups:ignorespace && export HISTCONTROL
 HISTIGNORE="ls:ll:la:ls.:l.:man:[bf]g:history:history *:h:h *:clear:c:exit:e" && export HISTIGNORE
 
 #=  z ("cd" jump history)  ====================================================
-. $HOME/bin/z.src/z.sh
+if [[ -f ${HOME}/bin/z.src/z.sh  ]]; then
+  . ${HOME}/bin/z.src/z.sh
+fi
 
 
 #=  Aliases  ==================================================================
@@ -133,7 +135,7 @@ fi
 
 
 #=  Path  =====================================================================
-PATH=$HOME/bin:$PATH && export PATH
+PATH=${HOME}/bin:${PATH} && export PATH
 
 
 #=  Prompt  ===================================================================
@@ -149,7 +151,7 @@ fi
 
 
 #=  Start TMUX on Login  ======================================================
-if [[ -z $TMUX ]]; then
+if [[ -z ${TMUX} ]] && hash tmux 2>/dev/null; then
   tm $(date +%Y%m%d%H%M%S)
 fi
 
