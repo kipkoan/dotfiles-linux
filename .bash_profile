@@ -56,11 +56,11 @@ PYTHON_CONFIGURE_OPTS="$PYTHON_CONFIGURE_OPTS --enable-shared" && export PYTHON_
 PYTHONSTARTUP=${HOME}/.pystartup && export PYTHONSTARTUP
 
 #=  pyenv  ====================================================================
-if which pyenv > /dev/null; then
+if hash pyenv 2>/dev/null; then
   PATH=$HOME/.pyenv/bin:$PATH && export PATH
   eval "$(pyenv init -)";
 fi
-if which pyenv-virtualenv-init > /dev/null; then
+if hash pyenv-virtualenv-init 2>/dev/null; then
   eval "$(pyenv virtualenv-init -)";
 fi
 
