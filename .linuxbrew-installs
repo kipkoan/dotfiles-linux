@@ -9,4 +9,4 @@ pyenv
 pyenv-virtualenv
 the_silver_searcher
 tmux
-vim
+vim --with-override-system-vi --with-lua --with-gettext
