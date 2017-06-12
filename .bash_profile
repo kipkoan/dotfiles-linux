@@ -25,7 +25,7 @@ SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
 
 
 #=  Set HOMEBREW_PREFIX =======================================================
-brew_prefix="${HOME}/.linuxbrew" && export brew_prefix
+brew_prefix="/home/linuxbrew/.linuxbrew" && export brew_prefix
 
 #=  Homebrew/bin  =============================================================
 PATH="${brew_prefix}/bin:${PATH}" && export PATH
