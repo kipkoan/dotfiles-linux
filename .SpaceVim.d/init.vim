@@ -36,6 +36,9 @@ let g:clang2_placeholder_prev = ''
 
 " Custom Settings
 
+" use comma as `<Leader>`
+let mapleader = ','
+
 let g:indentLine_char = '┆'
 let g:indentLine_color_gui = '#444444'
 let g:indentLine_color_gui = '#494040'
