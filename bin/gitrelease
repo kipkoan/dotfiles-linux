@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+ref="${1:-HEAD}"
+
+branch_full="$(git rev-parse --symbolic-full-name ${ref})"
+branch_short="$(echo ${branch_full} | cut -d'/' -f3-)"
+
+if [[ "${branch_short}" == "master" ]]; then
+  echo "ERROR: must specify a non-master branch"
+  exit 1
+fi
+
+branch_remote="$(git for-each-ref --format='%(upstream:short)' $(git rev-parse --symbolic-full-name ${branch_full}))"
+
+git_remote="$(git remote)"
+git_toplevel="$(git rev-parse --show-toplevel)"
+git_squash_msg_file="${git_toplevel}/.git/SQUASH_MSG"
+
+set -ex
+git checkout master
+git pull --rebase
+git checkout "${branch_short}"
+if [[ -n "${branch_remote}" ]]; then
+  git pull --rebase
+fi
+git rebase master
+git checkout master
+git merge --squash "${branch_full}"
+ex -snu NONE -c "1i|${branch_short}" -c "pu_|x" "${git_squash_msg_file}"
+git tag --force "${branch_short}" "${branch_full}"
+git push "${git_remote}" ":refs/tags/${branch_short}"
+git push "${git_remote}" "refs/tags/${branch_short}"
+git push --delete "${git_remote}" "${branch_full}"
+git branch --delete --force "${branch_short}"
+git commit -F "${git_squash_msg_file}"
