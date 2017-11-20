@@ -1,6 +1,6 @@
-#=  include interactive settings  =============================================
-if [[ $- =~ i ]] && [[ -f ~/.bash_profile_interactive ]]; then
-  source ~/.bash_profile_interactive
+#=  include first interactive settings  =======================================
+if [[ $- =~ 'i' ]] && [[ -f ~/.bash_profile_interactive_first ]]; then
+  source ~/.bash_profile_interactive_first
 fi
 
 
@@ -145,7 +145,7 @@ fi
 
 
 #=  cd to symlinked ~  ========================================================
-if [[ $(pwd) =~ ${HOME}(\$|\/)(.*) ]]; then
+if [[ $(pwd) =~ "${HOME}(\$|\/)(.*)" ]]; then
   cd ~/"${BASH_REMATCH[2]}"
 fi
 
@@ -159,4 +159,10 @@ fi
 #=  output w & nproc  =========================================================
 if [[ $- == *i* ]]; then
   w
+fi
+
+
+#=  include last interactive settings  ========================================
+if [[ $- =~ 'i' ]] && [[ -f ~/.bash_profile_interactive_last ]]; then
+  source ~/.bash_profile_interactive_last
 fi
