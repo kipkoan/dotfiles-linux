@@ -1,2 +1,13 @@
 #=  disable output flow control ===============================================
 stty -ixon -ixoff
+
+
+#=  vi-style command-line editing  ============================================
+set -o vi
+
+
+#=  SSH_AUTH_SOCK fix  ========================================================
+source ${HOME}/bin/start-ssh-agent
+
+#=  SSH Options  ==============================================================
+SSH_OPTIONS='-o "RemoteForward 8377 localhost:8377"' && export SSH_OPTIONS
