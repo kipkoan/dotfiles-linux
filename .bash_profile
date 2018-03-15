@@ -49,6 +49,15 @@ if hash pyenv-virtualenv-init 2>/dev/null; then
 fi
 
 
+#=  Serverless Tab Completion  ================================================
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+
+
 #=  Editors  ==================================================================
 EDITOR="vim" && export EDITOR
 VISUAL="vim" && export VISUAL
