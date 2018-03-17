@@ -17,7 +17,7 @@ LC_ALL="en_US.utf-8" && export LC_ALL
 brew_prefix="/home/linuxbrew/.linuxbrew" && export brew_prefix
 
 #=  Homebrew/bin  =============================================================
-PATH="${brew_prefix}/bin:${PATH}" && export PATH
+PATH="${brew_prefix}/bin:${brew_prefix}/sbin:${PATH}" && export PATH
 MANPATH="${brew_prefix}/share/man:${MANPATH}" && export MANPATH
 INFOPATH="${brew_prefix}/share/info:${INFOPATH}" && export INFOPATH
 
