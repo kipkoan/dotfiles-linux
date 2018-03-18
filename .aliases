@@ -9,10 +9,12 @@ alias gadd="git add -u && git add . && git status"
 
 #=  bash  =====================================================================
 alias ..='cd ..'
+alias ag='rg'
 alias cd..='cd ..'
 alias c='clear'
 alias diff='colordiff'
 alias e='exit'
+alias g='rg'
 alias grep='grep ${GREP_OPTIONS}'
 alias h='history'
 alias ht='HISTTIMEFORMAT="%F %T  " history'
@@ -25,7 +27,6 @@ alias ll='ls -Al'
 #alias root="sudo bash -l"
 alias ssh='ssh-sync'
 #alias sudo='sudo -Es'
-#alias vim='nvim'
 alias vi='vim'
 alias v='vim'
 alias k='kinit -fl7d'
