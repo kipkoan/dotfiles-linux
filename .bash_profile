@@ -6,6 +6,8 @@ fi
 
 #=  Environment Variables  ====================================================
 LC_ALL="en_US.utf-8" && export LC_ALL
+LESS='-FiMRsWX' && export LESS
+PAGER='less' && export PAGER
 
 
 #=  MySQl  ====================================================================
