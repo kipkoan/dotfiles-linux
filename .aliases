@@ -80,3 +80,13 @@ tm ()
     fi;
   fi
 }
+
+function tmp {
+  local parent="$HOME/tmp/scratch"
+  local latest="$parent/latest"
+  local scratch="$parent/scratch-`date +'%s'`"
+  mkdir -p $scratch
+  ln -nfs $scratch $latest
+  cd $latest
+  echo "Created $scratch"
+}
