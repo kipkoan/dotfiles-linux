@@ -13,6 +13,9 @@
 [push]
   default = simple
 
+[ssh]
+  variant = ssh
+
 [merge]
   tool = vimdiff
   conflictstyle = diff3
