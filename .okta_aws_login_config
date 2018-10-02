@@ -1,0 +1,39 @@
+[DEFAULT]
+okta_org_url = https://zillow.okta.com
+gimme_creds_server = appurl
+write_aws_creds = True
+okta_username = kipm
+aws_default_duration = 43200
+device_token = DI0XTFWHArRTg-RQf442jwIpQ
+
+[velocity-sandbox]
+cred_profile = velocity-sandbox
+app_url = https://zillow.okta.com/home/amazon_aws/0oa1dpwd6l6epcBDA1d8/272
+
+[dev-velocity-atlassian]
+cred_profile = dev-velocity-atlassian
+app_url = https://zillow.okta.com/home/amazon_aws/0oa1dje3zs08PavYF1d8/272
+
+[prod-velocity-atlassian]
+cred_profile = prod-velocity-atlassian
+app_url = https://zillow.okta.com/home/amazon_aws/0oa1dje3rnczC82Og1d8/272
+
+[zillow-velocity]
+cred_profile = zillow-velocity
+app_url = https://zillow.okta.com/home/amazon_aws/0oa1d1oqc22TsHgdm1d8/272
+
+[zillow-sandbox]
+cred_profile = zillow-sandbox
+app_url = https://zillow.okta.com/home/zillowgroupinc_zillowdevelopment_1/0oa18xhkwbch2QcWx1d8/aln18xhtgyg2CTd9J1d8
+
+[zillow-dev]
+cred_profile = zillow-dev
+app_url = https://zillow.okta.com/home/zillowgroupinc_zillowdev_1/0oa19ac7feiI6ZNE01d8/aln19ad3fumma6Aaq1d8
+
+[zillow-test]
+cred_profile = zillow-test
+app_url = https://zillow.okta.com/home/amazon_aws/0oa19a9pzauY2gxJM1d8/272
+
+[zillow-prod]
+cred_profile = zillow-prod
+app_url = https://zillow.okta.com/home/amazon_aws/0oa1794ivgz21AgKE1d8/272
