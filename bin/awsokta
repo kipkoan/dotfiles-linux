@@ -1,24 +1,5 @@
 #!/usr/bin/env bash
-
-set -eufxo pipefail
-
-#=  pyenv initialization  =====================================================
-if hash pyenv 2>/dev/null; then
-  PATH=${HOME}/.pyenv/bin:${PATH} && export PATH
-  eval "$(pyenv init -)";
-fi
-if hash pyenv-virtualenv-init 2>/dev/null; then
-  eval "$(pyenv virtualenv-init -)";
-fi
-
-eval "$(/opt/pyenv/libexec/pyenv init -)"
+set -eufo pipefail
 
 export PYENV_VERSION=$(pyenv whence gimme-aws-creds | tail -n1)
-
-#env | grep -i pyenv
-#pyenv which python
-
-#/opt/pyenv/libexec/pyenv shell ${venv}
-#exec "/opt/pyenv/libexec/pyenv" exec "$program" "$@"
-
-gimme-aws-creds
+gimme-aws-creds "${@}"
