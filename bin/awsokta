@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 set -eufo pipefail
 
+if [[ $# -eq 0 ]]; then
+    grep -P '\[(?!DEFAULT)[^\]]+\]' ~/.okta_aws_login_config
+    exit ${?}
+fi
+
 export PYENV_VERSION=$(pyenv whence gimme-aws-creds | tail -n1)
 gimme-aws-creds "${@}"
