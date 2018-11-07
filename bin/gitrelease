@@ -26,10 +26,7 @@ fi
 git rebase master
 git checkout master
 git merge --squash "${branch_full}"
-ex -snu NONE -c "1i|${branch_short}" -c "pu_|x" "${git_squash_msg_file}"
-git tag --force "${branch_short}" "${branch_full}"
-git push "${git_remote}" ":refs/tags/${branch_short}"
-git push "${git_remote}" "refs/tags/${branch_short}"
+vim -e -s -c "1i|${branch_short}" -c "pu_|x" "${git_squash_msg_file}"
 git push --delete "${git_remote}" "${branch_full}"
 git branch --delete --force "${branch_short}"
 git commit -F "${git_squash_msg_file}"
