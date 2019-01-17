@@ -51,6 +51,10 @@ if hash pyenv-virtualenv-init 2>/dev/null; then
 fi
 
 
+#=  Go  =======================================================================
+PATH="${HOME}/go/bin:${PATH}" && export PATH
+
+
 #=  Serverless Tab Completion  ================================================
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
