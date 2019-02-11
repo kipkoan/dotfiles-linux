@@ -10,8 +10,12 @@
 [repack]
   usedeltabaseoffset = true
 
+[status]
+  submodulesummary = 1
+
 [push]
   default = simple
+  recurseSubmodules = check
 
 [ssh]
   variant = ssh
@@ -28,6 +32,7 @@
 
 [diff]
   tool = vimdiff
+  submodule = log
 
 [difftool]
   prompt = false
@@ -104,3 +109,7 @@
   st = status
   wc = whatchanged -p --abbrev-commit --pretty=medium --
   dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+
+  sdiff = !git diff && git submodule foreach 'git diff'
+  spush = push --recurse-submodules=on-demand
+  supdate = submodule update --remote --merge
