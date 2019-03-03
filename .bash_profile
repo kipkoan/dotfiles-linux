@@ -52,7 +52,10 @@ fi
 
 
 #=  Go  =======================================================================
-PATH="${HOME}/go/bin:${PATH}" && export PATH
+if hash go 2>/dev/null; then
+  GOPATH=$(go env GOPATH) && export GOPATH
+  PATH="${GOPATH}/bin:${PATH}" && export PATH
+fi
 
 
 #=  Serverless Tab Completion  ================================================
