@@ -3,6 +3,7 @@
   email = kipm@zillow.com
 
 [core]
+  abbrev = 11
   excludesfile = ~/.config/git/ignore
   legacyheaders = false
   pager = less -FMRiX
