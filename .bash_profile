@@ -58,6 +58,11 @@ if hash go 2>/dev/null; then
 fi
 
 
+#=  NPM  ======================================================================
+PATH="$PATH:$HOME/npm/bin" && export PATH
+NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules" && export NODE_PATH
+
+
 #=  Serverless Tab Completion  ================================================
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
