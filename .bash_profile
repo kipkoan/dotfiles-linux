@@ -66,10 +66,13 @@ NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules" && export NODE_PATH
 #=  Serverless Tab Completion  ================================================
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+[ -f /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . ${brew_prefix}/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+[ -f /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /home/kipm/npm/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
 
 
 #=  Editors  ==================================================================
