@@ -58,6 +58,12 @@ if hash go 2>/dev/null; then
 fi
 
 
+#=  tfenv  ====================================================================
+if [[ -f ~/.tfenv/bin/tfenv ]]; then
+  PATH="${HOME}/.tfenv/bin:${PATH}" && export PATH
+fi
+
+
 #=  NPM  ======================================================================
 PATH="$PATH:$HOME/npm/bin" && export PATH
 NODE_PATH="$NODE_PATH:$HOME/npm/lib/node_modules" && export NODE_PATH
