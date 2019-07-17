@@ -83,7 +83,7 @@
 
   ls-ignored = !git ls-files -v | grep '^[a-z]'
   ls-igskipped = !git ls-files -v | grep '^[a-zS]'
-  ls-skipped = !git ls-files -v | grep '^S'
+  ls-skipped = !git ls-files -v | grep '^[Ss]'
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged
   skip = update-index --skip-worktree
