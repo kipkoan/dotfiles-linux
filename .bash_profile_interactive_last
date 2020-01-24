@@ -64,9 +64,18 @@ shopt -s histverify
 HISTCONTROL=ignoredups:ignorespace && export HISTCONTROL
 HISTIGNORE="ls:ll:la:ls.:l.:man:[bf]g:history:history *:h:h *:clear:c:exit:e" && export HISTIGNORE
 
-#=  z ("cd" jump history)  ====================================================
-if [[ -f ${HOME}/bin/z.src/z.sh  ]]; then
-  . ${HOME}/bin/z.src/z.sh
+#=  z.lua ("cd" jump history)  ================================================
+if [[ -f /usr/share/z.lua/z.lua  ]]; then
+  export _ZL_ECHO=1
+  export _ZL_CMD="zz"
+  eval "$(lua /usr/share/z.lua/z.lua --init bash enhanced once fzf)"
+  function z() {
+    if [[ "$argv[1]" == "-"* ]]; then
+        _zlua "$@"
+    else
+        cd "$@" 2> /dev/null || _zlua "$@"
+    fi
+  }
 fi
 
 
