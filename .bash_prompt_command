@@ -113,7 +113,8 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}[${branch}]${remote}$RESET"
+  BRANCH_COLOR="${state}[${branch}]${remote}$RESET"
+  BRANCH_PLAIN="[${branch}]${remote}"
 }
 
 
@@ -123,27 +124,38 @@ function set_bash_prompt () {
   if is_git_repository ; then
     set_git_branch
   else
-    BRANCH=''
+    BRANCH_COLOR=''
+    BRANCH_PLAIN=''
   fi
 
   # Set USER_COLOR
   prompt_set_user_color
 
+  ps1_username=$(whoami)
+  ps1_username="${ps1_username:0:10}"
+  ps1_hostname=$(hostname -s)
+  ps1_hostname="${ps1_hostname:0:20}"
+  ps1_pwd=$(pwd | sed "s|^$HOME|~|")
+  ps1_datetime=$(date "+${DATEFORMAT}")
+
+  user_at_host="${ps1_username}@${ps1_hostname}"
+  lefthalf="${user_at_host} ${ps1_pwd} ${BRANCH_PLAIN}"
+  righthalf="${ps1_datetime}"
+
   # Fill spaces between the left and right halves
-  strippedbranch=`echo $BRANCH | sed 's|\\\\\\[[^]]*\\]||g'`
-  lefthalf="`whoami`@`hostname -s` `pwd | sed "s|$HOME|~|"` $strippedbranch"
-  righthalf=`date "+${DATEFORMAT}"`
-  let fillsize=$(tput cols)-${#lefthalf}-${#righthalf}
+  termwidth=${COLUMNS:-$(tput cols 2>&-||echo 80)}
+  let fillsize=${termwidth}-${#lefthalf}-${#righthalf}
+
   if [[ $fillsize -gt 1 ]]; then
-    fill=`printf ' %.0s' {1..300}` # 300 spaces
+    fill=$(printf ' %.0s' {1..300}) # 300 spaces
     fill=${fill:0:$fillsize}
   else
+    ps1_pwd="${ps1_pwd:0:20}..${ps1_pwd:(23+${#lefthalf}+${#righthalf}-${termwidth})}"
     fill=' '
   fi
 
   # Set the bash prompt variable.
-  PS1="\n${USER_COLOR}\u${FGCY}@${HOSTCOLOR}\h${RESET} ${FGWT}\w${RESET} ${BRANCH}${fill}${FGBL}\D{${DATEFORMAT}}${RESET}\n\
-${PROMPT_SYMBOL} "
+  PS1="\n${USER_COLOR}${ps1_username}${FGCY}@${HOSTCOLOR}${ps1_hostname}${RESET} ${FGWT}${ps1_pwd}${RESET} ${BRANCH_COLOR}${fill}${FGBL}${ps1_datetime}${RESET}\n${PROMPT_SYMBOL} "
 }
 
 # Set PROMPT_CHARACTER
