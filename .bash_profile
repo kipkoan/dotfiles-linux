@@ -15,16 +15,11 @@ PAGER='less' && export PAGER
 #DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH && export DYLD_LIBRARY_PATH
 
 
-#=  Set HOMEBREW_PREFIX =======================================================
-brew_prefix="/home/linuxbrew/.linuxbrew" && export brew_prefix
-
-#=  Homebrew/bin  =============================================================
-PATH="${brew_prefix}/bin:${brew_prefix}/sbin:${PATH}" && export PATH
-MANPATH="${brew_prefix}/share/man:${MANPATH}" && export MANPATH
-INFOPATH="${brew_prefix}/share/info:${INFOPATH}" && export INFOPATH
-
-#=  Homebrew/sbin  ============================================================
-# PATH=/usr/local/sbin:$PATH && export PATH
+#=  Configure HomeBrew  =======================================================
+if [[ -d /home/linuxbrew/.linuxbrew ]]; then
+  brew_prefix="/home/linuxbrew/.linuxbrew" && export brew_prefix
+  eval $(${brew_prefix}/bin/brew shellenv)
+fi
 
 #=  Homebrew/github_api_token =================================================
 if [[ -f ~/.homebrew_github_api_token ]]; then
