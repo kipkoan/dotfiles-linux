@@ -9,6 +9,7 @@ let g:indentLine_color_gui = '#494040'
 
 let g:spacevim_default_indent = 4
 
+let g:syntastic_python_python_exec = 'python3'
 
 set gdefault
 set ignorecase

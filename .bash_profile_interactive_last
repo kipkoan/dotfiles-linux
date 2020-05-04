@@ -1,6 +1,6 @@
 #=  Homebrew/bash-completion  =================================================
-if [[ -f ${brew_prefix}/etc/bash_completion ]]; then
-  . ${brew_prefix}/etc/bash_completion
+if [[ -r ${brew_prefix}/etc/profile.d/bash_completion.sh ]]; then
+  . ${brew_prefix}/etc/profile.d/bash_completion.sh
 fi
 
 
