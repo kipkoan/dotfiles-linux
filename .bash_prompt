@@ -1,3 +1,13 @@
-if [[ -f ~/.bash_prompt_command ]] && [[ ! ${PROMPT_COMMAND} =~ 'PS1="$(~/.bash_prompt_command ${?})"' ]]; then
-  PROMPT_COMMAND='PS1="$(~/.bash_prompt_command ${?})"; '"${PROMPT_COMMAND}" && export PROMPT_COMMAND
-fi
+#=  define function  ==========================================================
+define(){ IFS='\n' read -r -d '' ${1} || true; }
+
+
+#=  Prompt  ===================================================================
+define PROMPT_COMMAND <<-'EOB'
+  PS1="$(~/.bash_prompt_command ${?})";
+  printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}";
+  _zlua_precmd;
+  _pyenv_virtualenv_hook;
+  history -a; history -c; history -r;
+EOB
+export PROMPT_COMMAND
