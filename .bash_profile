@@ -59,6 +59,8 @@ if [[ -f ~/.tfenv/bin/tfenv ]]; then
 fi
 
 
+#=  Serverless  ===============================================================
+PATH="$HOME/.serverless/bin:$PATH" && export PATH
 
 
 #=  Editors  ==================================================================
