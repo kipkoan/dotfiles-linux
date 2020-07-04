@@ -5,3 +5,5 @@
 *.un~
 .*.swp
 .svn
+.vscode
+__pycache__
