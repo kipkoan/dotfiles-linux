@@ -9,6 +9,8 @@ alias gadd="git add -u && git add . && git status"
 
 #=  bash  =====================================================================
 alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias ag='rg'
 alias cd..='cd ..'
 alias c='clear'
