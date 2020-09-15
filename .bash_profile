@@ -45,6 +45,10 @@ if hash pyenv-virtualenv-init 2>/dev/null; then
   eval "$(pyenv virtualenv-init -)";
 fi
 
+#=  Poetry  ===================================================================
+if [[ -f ~/.poetry/bin/poetry ]]; then
+  PATH="${HOME}/.poetry/bin:$PATH" && export PATH
+fi
 
 #=  Go  =======================================================================
 if hash go 2>/dev/null; then
